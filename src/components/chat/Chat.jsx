@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './chat.css'
 import EmojiPicker from 'emoji-picker-react'
 
@@ -6,6 +6,11 @@ function Chat() {
 
   const [open, setOpen] = useState(false)
   const [text, setText] = useState("")
+  const endRef = useRef(null)
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behaviour: 'smooth' })
+  }, [])
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji)
@@ -30,7 +35,45 @@ function Chat() {
           <img src="./info.png" alt="" />
         </div>
       </div>
-      <div className="center"></div>
+      <div className="center">
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eius ex ullam, repudiandae doloremque ad eos expedita magni alias? Officiis pariatur dolores impedit sequi ea.
+            </p>
+            <span>1 minute ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eius ex ullam, repudiandae doloremque ad eos expedita magni alias? Officiis pariatur dolores impedit sequi ea.
+            </p>
+            <span>1 minute ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eius ex ullam, repudiandae doloremque ad eos expedita magni alias? Officiis pariatur dolores impedit sequi ea.
+            </p>
+            <span>1 minute ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <img src="https://i.pinimg.com/564x/78/55/5c/78555c18579ecc70b37a1eae4e5211ed.jpg" width={236} height={476} alt="Pinterest image" />
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eius ex ullam, repudiandae doloremque ad eos expedita magni alias? Officiis pariatur dolores impedit sequi ea.
+            </p>
+            <span>1 minute ago</span>
+          </div>
+        </div>
+        <div ref={endRef}></div>
+
+      </div>
       <div className="bottom">
         <div className="icons">
           <img src="./img.png" alt="" />
