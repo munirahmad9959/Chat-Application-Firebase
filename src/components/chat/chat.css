@@ -82,7 +82,7 @@
       height: 30px;
       border-radius: 50%;
       object-fit: cover;
-    } 
+    }
     .texts {
       display: flex;
       flex-direction: column;
@@ -136,6 +136,10 @@
     padding: 12px;
     border-radius: 10px;
     font-size: 16px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   .emoji {
@@ -155,6 +159,11 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
+    &:disabled {
+      background-color: #5182feb4;
+      cursor: not-allowed;
+    }
   }
 }
 
