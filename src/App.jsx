@@ -16,7 +16,8 @@ function App() {
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
-      fetchUserInfo(user?.uid);
+      fetchUserInfo(user?.uid);             //here we setup the auth listener to know which user is logged in
+                                                //the fetchUserInfo is a function defined in userStore.js
     })
 
     return () => {

@@ -42,12 +42,12 @@ function AddUser() {
       });
 
       // References to the userChats documents for both users
-      const userChatDocRef = doc(userChatsRef, user.id);
-      const currentUserChatDocRef = doc(userChatsRef, currentUser.id);
+      const userChatDocRef = doc(userChatsRef, user.id);    //7vu user1
+      const currentUserChatDocRef = doc(userChatsRef, currentUser.id);    //5q ghost
 
-      // Check if the userChats document exists for the other user
-      const userChatDocSnap = await getDoc(userChatDocRef);
-      const currentUserChatDocSnap = await getDoc(currentUserChatDocRef);
+      // Fetching both users data
+      const userChatDocSnap = await getDoc(userChatDocRef);   //7vu user1
+      const currentUserChatDocSnap = await getDoc(currentUserChatDocRef);   //5q ghost
 
       // If the userChats document exists for the other user, update it; otherwise, create it
       if (userChatDocSnap.exists()) {
