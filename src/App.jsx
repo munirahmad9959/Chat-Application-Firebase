@@ -14,16 +14,30 @@ function App() {
   const { chatId } = useChatStore();
 
 
+  // useEffect(() => {
+  //   const unSub = onAuthStateChanged(auth, (user) => {
+  //     fetchUserInfo(user?.uid);             //here we setup the auth listener to know which user is logged in
+  //                                               //the fetchUserInfo is a function defined in userStore.js
+  //   })
+
+  //   return () => {
+  //     unSub()
+  //   }
+  // }, [fetchUserInfo])
+
   useEffect(() => {
-    const unSub = onAuthStateChanged(auth, (user) => {
-      fetchUserInfo(user?.uid);             //here we setup the auth listener to know which user is logged in
-                                                //the fetchUserInfo is a function defined in userStore.js
-    })
+    const unSub = onAuthStateChanged(auth, async (user) => {
+      if (user?.uid) {
+        await fetchUserInfo(user.uid);
+      } else {
+        useUserStore.setState({ currentUser: null, isLoading: false });
+      }
+    });
 
     return () => {
-      unSub()
-    }
-  }, [fetchUserInfo])
+      unSub();
+    };
+  }, []);
 
   console.log(currentUser)
 
