@@ -5,11 +5,8 @@ import { auth, db } from '../../lib/firebase.js'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import upload from '../../lib/upload.js'
-import { useUserStore } from '../../lib/userStore.js'
 
 function Login() {
-
-  const { fetchUserInfo } = useUserStore()
 
   const [avatar, setAvatar] = useState({
     file: null,
@@ -27,45 +24,22 @@ function Login() {
     }
   }
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault()
-  //   setLoading(true)
-
-  //   const formData = new FormData(e.target)
-  //   const { email, password } = Object.fromEntries(formData)
-
-  //   try {
-  //     await signInWithEmailAndPassword(auth, email, password)
-  //   } catch (error) {
-  //     console.log(error)
-  //     toast.error(error.message)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
 
-    const formData = new FormData(e.target);
-    const { email, password } = Object.fromEntries(formData);
+    const formData = new FormData(e.target)
+    const { email, password } = Object.fromEntries(formData)
 
     try {
-        const res = await signInWithEmailAndPassword(auth, email, password);
-        toast.success("Login Successful!");
-
-        // Ensure user state updates after login
-        await fetchUserInfo(res.user.uid);
-
+      await signInWithEmailAndPassword(auth, email, password)
     } catch (error) {
-        console.error("Login Error:", error);
-        toast.error(error.message);
+      console.log(error)
+      toast.error(error.message)
     } finally {
-        setLoading(false);
+      setLoading(false)
     }
-};
-
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -91,6 +65,7 @@ function Login() {
         chats: [],
 
       });
+
 
 
       toast.success('Account Created! You can login now!');

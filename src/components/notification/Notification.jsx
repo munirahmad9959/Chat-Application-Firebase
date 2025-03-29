@@ -5,8 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 function Notification() {
     return (
         <div>
-            <ToastContainer position='bottom-right'/>
-
+            <ToastContainer position='bottom-right' autoClose={2000} />
         </div>
     )
 }
